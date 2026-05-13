@@ -7,7 +7,7 @@ mongoose.connect(mongoose_URL);
 const db = mongoose.connection;
 
 db.on('connected', () => {
-    console.log("DB connected");
+    console.log("DB connection ");
 });
 
 db.on('disconnected', () => {

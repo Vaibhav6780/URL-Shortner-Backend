@@ -1,6 +1,7 @@
 const Url = require("../models/Url");
 const express = require("express");
 const router = express.Router();
+require('dotenv').config()
 
 const AuthMiddleware = require("../middlewares/AuthMiddleware");
 
@@ -32,7 +33,7 @@ router.post("/", AuthMiddleware, async (req, res) => {
 
       return res.status(200).json({
 
-         shortUrl: `http://localhost:3000/url/${shortCode}`
+         shortUrl: `${process.env.BASE_URL}/url/${shortCode}`
 
       });
 
@@ -100,8 +101,7 @@ router.delete("/:id", AuthMiddleware, async(req,res)=>{
             message:"Unauthorized"
          });
 
-      }  console.log(req.params.id);
-
+      }  
       await Url.findByIdAndDelete(req.params.id);
 
       return res.status(200).json({
