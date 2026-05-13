@@ -1,19 +1,21 @@
 require('dotenv').config();
-const mongoose=require('mongoose');
-const mongoose_URL=process.env.mongoose_URl;
+const mongoose = require('mongoose');
+const mongoose_URL = process.env.MONGO_URI;
 
-mongoose.connect(mongoose_URL)
-const db=mongoose.connection;
+mongoose.connect(mongoose_URL);
 
-db.on('connected',()=>{
+const db = mongoose.connection;
+
+db.on('connected', () => {
     console.log("DB connected");
-})
+});
 
-db.on('disconnected',()=>{
+db.on('disconnected', () => {
     console.log("DB disconnected");
-})
-db.on('error',(error)=>{
-    console.log("DB error",error);
-})
+});
 
-module.exports=db;
+db.on('error', (error) => {
+    console.log("DB error", error);
+});
+
+module.exports = db;
