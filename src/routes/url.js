@@ -80,7 +80,7 @@ router.get("/:shortCode", async (req, res) => {
 });
 
 
-router.delete("/:id", AuthMiddleware, async(req,res)=>{
+router.delete("/:shortCode", AuthMiddleware, async(req,res)=>{
 
    try{
 
