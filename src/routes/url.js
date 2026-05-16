@@ -84,7 +84,7 @@ router.delete("/:shortCode", AuthMiddleware, async(req,res)=>{
 
    try{
 
-      const url = await Url.findById(req.params.id);
+      const url = await Url.findById(req.params.shortCode);
 
       if(!url){
 
@@ -102,7 +102,7 @@ router.delete("/:shortCode", AuthMiddleware, async(req,res)=>{
          });
 
       }  
-      await Url.findByIdAndDelete(req.params.id);
+      await Url.findByIdAndDelete(req.params.shortCode);
 
       return res.status(200).json({
          message:"URL deleted successfully"
