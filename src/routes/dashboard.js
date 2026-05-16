@@ -3,7 +3,7 @@ const router=express.Router();
 const AuthMiddleware=require('../middlewares/AuthMiddleware')
 const Url=require('../models/Url');
 
-console.log('from dashboard');
+
 router.get("/",AuthMiddleware, async(req,res)=>{
 
    try{
@@ -18,7 +18,7 @@ router.get("/",AuthMiddleware, async(req,res)=>{
 
       return res.status(500).json({
          message:"Server error"
-      });s
+      });
 
    }
 
