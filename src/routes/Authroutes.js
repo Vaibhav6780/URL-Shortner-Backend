@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
         }
         const existed = await (Register.findOne({ email: email }))
         if (!existed) {
-            return res.status(400).json("User does not exist, Please Register First");
+            return res.status(400).json({message:"User does not exist, Please Register First"});
         }
         const comparepass = await bcrypt.compare(password, existed.password);
         if (!comparepass) return res.status(404).json({ message: "Invalid Email or Password" });
@@ -56,14 +56,12 @@ router.post('/login', async (req, res) => {
 
             httpOnly: true,
 
-            secure: true,
+            secure: false,
 
-            sameSite: "none"
+            sameSite: "lax"
 
         });
-        return res.status(200).json("Successfully Logged in");
-
-
+        return res.status(200).json({message:"Successfully Logged in"});
     } catch (error) {
         console.log(error);
 
